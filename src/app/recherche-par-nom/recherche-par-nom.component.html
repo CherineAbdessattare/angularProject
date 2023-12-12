@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+        <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Nom Etudiant en tapant  :  </label>
+            <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+            </div>
+            </form>
+       
+        <!-- <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Nom Etudiant :     </label>
+            <input type="text" class="form-control" [(ngModel)]="nomEtudiant" name="nomProduit" class="form-control">
+            <button type="submit" (click)="rechercherEtuds()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+            </div>
+            </form> -->
+
+            <!-- <form class="form-inline">
+                <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label>Nom Etudiant en tapant  : </label>
+                <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+                </div>
+                </form> -->
+    <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Liste de Etudiants</th>
+                    </tr>
+                </thead>
+                <tr> <th>IdEtudiant</th><th>Nom</th> <th>Prenom</th><th>Parcours</th> <th>Email</th><th>Date Inscription</th> <th>Departement</th></tr>
+                <tbody *ngFor="let etudiant of etudiants   | searchFilter: searchTerm ">
+                    <tr >
+                        <td>{{etudiant.idEtudiant}}</td>
+                        <td>{{etudiant.nom}}</td>
+                        <td>{{etudiant.prenom}}</td>
+                        <td>{{etudiant.parcours}}</td>
+                        <td>{{etudiant.email}}</td>
+                        <td>{{etudiant.dateInscription  | date:'dd/MM/yyyy'}}</td>
+                        <!-- <td>{{etudiant.departement?.nomDepart}}</td> -->
+                        <td>{{etudiant.departement? etudiant.departement.nomDepart : ''}}</td>
+                        <!-- <td><a class="btn btn-danger" (click)="supprimerEtudiant(etudiant)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateEtudiant',etudiant.idEtudiant]">Modifier</a></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

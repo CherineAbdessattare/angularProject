@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <app-update-departement [departement]="updatedDep"
+        (departementUpdated)= "departementUpdated($event)"  
+        [ajout]="ajout">
+    </app-update-departement>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom Departement</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let dep of departements">
+                    <tr>
+                        <td>{{dep.idDepart}}</td>
+                        <td>{{dep.nomDepart}}</td>
+                        <td>{{dep.DescriptionDepart}}</td>
+                        <td><a class="btn btn-success" (click)="updateDep(dep)">Editer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

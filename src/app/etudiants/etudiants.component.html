@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Liste des Etudiants</th>
+                    </tr>
+                </thead>
+                <tr> <th>IdEtudiant</th><th>Nom</th> <th>Prenom</th><th>Parcours</th> <th>Email</th><th>Date Inscription</th> <th>Departement</th> <th>Image</th></tr>
+                <tbody *ngFor="let etudiant of etudiants">
+                    <tr >
+                        <td>{{etudiant.idEtudiant}}</td>
+                        <td>{{etudiant.nom}}</td>
+                        <td>{{etudiant.prenom}}</td>
+                        <td>{{etudiant.parcours}}</td>
+                        <td>{{etudiant.email}}</td>
+                        <td>{{etudiant.dateInscription  | date:'dd/MM/yyyy'}}</td>
+                        <!-- <td>{{etudiant.departement?.nomDepart}}</td> -->
+                        <td>{{etudiant.departement? etudiant.departement.nomDepart : ''}}</td>
+                        <td><img class="card-img-top img-responsive" src="{{etudiant.imageStr}}" style="height :50px;width:100px"></td>
+                        <td><a class="btn btn-danger"   *ngIf="authService.isAdmin()" (click)="supprimerEtudiant(etudiant)">Supprimer</a></td>
+                        <td><a class="btn btn-success"   *ngIf="authService.isAdmin()" [routerLink]="['/updateEtudiant',etudiant.idEtudiant]">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
